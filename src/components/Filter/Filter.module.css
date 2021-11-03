@@ -1,0 +1,23 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: midnightblue;
+}
+
+.input {
+  max-width: 200px;
+  padding: 6px;
+  margin-bottom: 30px;
+  border: 1px solid midnightblue;
+  border-radius: 5%;
+  transform: border-color 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.input:hover {
+  border-color: cornflowerblue;
+}
+
+.span {
+  margin-bottom: 10px;
+}

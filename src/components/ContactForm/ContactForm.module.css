@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: midnightblue;
+}
+
+.label {
+  margin-bottom: 5px;
+}
+
+.input {
+  margin-bottom: 20px;
+  padding: 6px;
+  border: 1px solid midnightblue;
+  border-radius: 5%;
+  transform: border-color 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.input:hover {
+  border-color: cornflowerblue;
+}
+
+.btnSubmit {
+  width: 120px;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 5%;
+
+  background-color: cornflowerblue;
+  color: white;
+
+  transition: background-color 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67),
+    color 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67),
+    transform 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.btnSubmit:hover {
+  border: 1px solid cornflowerblue;
+  background-color: white;
+  color: cornflowerblue;
+  transform: scale(1.1);
+}
