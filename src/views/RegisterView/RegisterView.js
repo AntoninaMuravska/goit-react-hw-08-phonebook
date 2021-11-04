@@ -39,6 +39,7 @@ export default function RegisterView() {
           <label className={s.label}>
             Имя
             <input
+              className={s.input}
               type="text"
               name="name"
               value={name}
@@ -49,6 +50,7 @@ export default function RegisterView() {
           <label className={s.label}>
             Почта
             <input
+              className={s.input}
               type="email"
               name="email"
               value={email}
@@ -59,6 +61,7 @@ export default function RegisterView() {
           <label className={s.label}>
             Пароль
             <input
+              className={s.input}
               type="password"
               name="password"
               value={password}
@@ -66,7 +69,9 @@ export default function RegisterView() {
             />
           </label>
 
-          <button type="submit">Зарегистрироваться</button>
+          <button type="submit" className={s.btnSubmit}>
+            Зарегистрироваться
+          </button>
         </form>
       </div>
     </div>

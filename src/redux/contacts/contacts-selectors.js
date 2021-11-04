@@ -8,6 +8,8 @@ export const getFilter = state => {
   return state.contacts.filter;
 };
 
+// export const getLoading = state => state.contacts.loading;
+
 export const getVisibleContacts = createSelector(
   [getContacts, getFilter],
   (contacts, filter) => {

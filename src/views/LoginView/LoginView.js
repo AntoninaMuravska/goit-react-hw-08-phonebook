@@ -1,10 +1,10 @@
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { authOperations } from '../redux/auth';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
 import s from '../LoginView/LoginView.module.css';
 
 export default function LoginView() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,7 +21,7 @@ export default function LoginView() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // dispatch(authOperations.logIn({ email, password }));
+    dispatch(authOperations.logIn({ email, password }));
     setEmail('');
     setPassword('');
   };
@@ -35,6 +35,7 @@ export default function LoginView() {
           <label className={s.label}>
             Почта
             <input
+              className={s.input}
               type="email"
               name="email"
               value={email}
@@ -45,6 +46,7 @@ export default function LoginView() {
           <label className={s.label}>
             Пароль
             <input
+              className={s.input}
               type="password"
               name="password"
               value={password}
@@ -52,7 +54,9 @@ export default function LoginView() {
             />
           </label>
 
-          <button type="submit">Войти</button>
+          <button type="submit" className={s.btnSubmit}>
+            Войти
+          </button>
         </form>
       </div>
     </div>
