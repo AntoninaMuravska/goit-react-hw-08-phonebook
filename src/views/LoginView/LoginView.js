@@ -28,12 +28,12 @@ export default function LoginView() {
 
   return (
     <div>
-      <h1>Страница логина</h1>
+      <h1>Login form</h1>
 
       <div className={s.container}>
         <form onSubmit={handleSubmit} className={s.form} autoComplete="off">
           <label className={s.label}>
-            Почта
+            E-mail
             <input
               className={s.input}
               type="email"
@@ -44,7 +44,7 @@ export default function LoginView() {
           </label>
 
           <label className={s.label}>
-            Пароль
+            Password
             <input
               className={s.input}
               type="password"
@@ -55,7 +55,7 @@ export default function LoginView() {
           </label>
 
           <button type="submit" className={s.btnSubmit}>
-            Войти
+            Login
           </button>
         </form>
       </div>
