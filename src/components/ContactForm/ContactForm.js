@@ -16,12 +16,9 @@ class ContactForm extends Component {
   numberInputId = uuidv4();
 
   handleInputChange = e => {
-    // console.log(e.currentTarget.value);
-    // console.log(e.currentTarget.name);
     const { name, value } = e.currentTarget;
 
     this.setState({ [name]: value });
-    // console.log(this.state);
   };
 
   handleSubmit = e => {

@@ -1,42 +1,56 @@
-import { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useEffect, Suspense, lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Switch } from 'react-router-dom';
 import Container from './components/Container';
 import AppBar from './components/AppBar';
-import ContactsView from './views/ContactsView';
-import HomeView from './views/HomeView';
-import LoginView from './views/LoginView';
-import RegisterView from './views/RegisterView';
-// import Contacts from './components/Contacts';
-import contactOperations from './redux/contacts/contacts-operations';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+import { authOperations, authSelectors } from './redux/auth';
 
 import './App.css';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchContacts();
-  }
+const HomeView = lazy(() => import('./views/HomeView'));
+const RegisterView = lazy(() => import('./views/RegisterView'));
+const LoginView = lazy(() => import('./views/LoginView'));
+const ContactsView = lazy(() => import('./views/ContactsView'));
 
-  render() {
-    return (
+export default function App() {
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
+  return (
+    !isFetchingCurrentUser && (
       <div>
         <Container>
           <AppBar />
 
           <Switch>
-            <Route exact path="/" component={HomeView} />
-            <Route path="/register" component={RegisterView} />
-            <Route path="/login" component={LoginView} />
-            <Route path="/contacts" component={ContactsView} />
+            <Suspense fallback={<p>Загружаем...</p>}>
+              <PublicRoute exact path="/">
+                <HomeView />
+              </PublicRoute>
+              <PublicRoute exact path="/register" restricted>
+                <RegisterView />
+              </PublicRoute>
+              <PublicRoute
+                exact
+                path="/login"
+                restricted
+                redirectTo="/contacts"
+              >
+                <LoginView />
+              </PublicRoute>
+              <PrivateRoute path="/contacts" redirectTo="/login">
+                <ContactsView />
+              </PrivateRoute>
+            </Suspense>
           </Switch>
         </Container>
       </div>
-    );
-  }
+    )
+  );
 }
-
-const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(contactOperations.fetchContacts()),
-});
-
-export default connect(null, mapDispatchToProps)(App);
